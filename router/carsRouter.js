@@ -19,6 +19,7 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
     const postBody = req.body;
+    console.log(postBody)
     try {
         const cars = await db('cars').insert(postBody);
         res.status(201).json(cars);
@@ -26,7 +27,8 @@ router.post('/', async (req, res) => {
         res.status(500).json
         ({
             success: false,
-            errorMessage: 'car not posted'
+            errorMessage: 'car not posted',
+            message: err.message
         })
     }
 })
